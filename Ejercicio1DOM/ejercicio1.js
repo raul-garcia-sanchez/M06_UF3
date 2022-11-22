@@ -1,20 +1,13 @@
-var enlace = document.getElementsByTagName("a")[0];
-var parrafo = document.getElementsByTagName("p")[0];
-var count = 0;
-enlace.addEventListener("click", aumentoCount);
-
-function aumentoCount(){
-    count = count + 1;
-    if(count % 2 != 0){
-        parrafo.style.display = "none";
-        enlace.innerHTML = "mostrar texto";
+var listLinks = document.getElementsByTagName('a')[0];
+var listParagraph = document.getElementsByTagName('p')[0];
+listLinks.onclick = function(){
+    if(listLinks.innerHTML == "ocultar texto"){
+        listParagraph.style.display = "none";
+        listLinks.innerHTML = "mostrar texto";
     }
     else{
-        parrafo.style.display = "block";
-        enlace.innerHTML = "ocultar texto";
+        listParagraph.style.display = "block";
+        listLinks.innerHTML = "ocultar texto";
     }
+    
 }
-
-
-
-
