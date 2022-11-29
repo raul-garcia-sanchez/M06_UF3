@@ -10,46 +10,43 @@ btnDestruirPosicion.addEventListener("click", function () {
 });
 
 //Evento click izquierdo
-var lista = document.getElementsByTagName("ul")[0];
-lista.addEventListener("mousedown", function(event){
-    if(event.button == 0){
-        seguirProgresion();
-    }
+var listaUl = document.getElementsByTagName("ul")[0];
+listaUl.addEventListener("mousedown", function (event) {
+  if (event.button == 0) {
+    seguirProgresion();
+  }
 });
 
-//Evento click derecho
+//Quito evento clickderecho
+document.addEventListener("contextmenu", (event) => event.preventDefault());
 
-for(let i = 0; i < lista.children.length; i++){
-    lista.children[i].addEventListener("mouseDown", function(event){
-        event.preventDefault();
-        if(event.button == 2){
-            console.log("ei");
-        }
-    })
+//Evento click derecho
+for (let i = 0; i < listaUl.children.length; i++) {
+  listaUl.children[i].addEventListener("mousedown", function (event) {
+    if (event.button == 2) {
+      eliminarElemento(listaUl.children[i]);
+    }
+  });
 }
-console.log(lista.children);
 
 function seguirProgresion() {
-  var ulProgresion = document.getElementsByTagName("ul")[0];
-  var liUltimo = ulProgresion.lastElementChild;
+  var liUltimo = listaUl.lastElementChild;
   if (liUltimo) {
     var ultimoValor = liUltimo.innerHTML;
   } else {
     var ultimoValor = 1;
   }
 
-  insertarElemento("li", ulProgresion, liUltimo, null, ultimoValor * 2, false);
+  insertarElemento("li", listaUl, liUltimo, null, ultimoValor * 2, false);
 }
 function eliminarElementoProgresion(eliminarUltimo = true) {
-  var ulProgresion = document.getElementsByTagName("ul")[0];
   var posicionEliminar = document.getElementsByName("inpDestruirPosicion")[0]
     .value;
-  var liEliminar = ulProgresion.children;
+  var liEliminar = listaUl.children;
 
   if (eliminarUltimo) {
     eliminarElemento(liEliminar[liEliminar.length - 1]);
-  } 
-  else {
+  } else {
     eliminarElemento(liEliminar[posicionEliminar - 1]);
   }
 }
