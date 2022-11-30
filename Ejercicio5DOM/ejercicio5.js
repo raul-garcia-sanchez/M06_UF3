@@ -17,13 +17,16 @@ listaUl.addEventListener("mousedown", function (event) {
   }
 });
 
-//Quito evento clickderecho
+console.log(listaUl[1]);
+
+//Quito evento click derecho
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 //Evento click derecho
 for (let i = 0; i < listaUl.children.length; i++) {
   listaUl.children[i].addEventListener("mousedown", function (event) {
     if (event.button == 2) {
+      console.log(listaUl.children[i]);
       eliminarElemento(listaUl.children[i]);
     }
   });
@@ -36,8 +39,15 @@ function seguirProgresion() {
   } else {
     var ultimoValor = 1;
   }
-
+  //console.log(listaUl.children);
   insertarElemento("li", listaUl, liUltimo, null, ultimoValor * 2, false);
+  var liDespuesDeAñadir = listaUl.lastElementChild;
+  liDespuesDeAñadir.addEventListener("mousedown", function (event) {
+    if (event.button == 2) {
+        console.log(liDespuesDeAñadir);
+      eliminarElemento(liDespuesDeAñadir);
+    }
+  });
 }
 function eliminarElementoProgresion(eliminarUltimo = true) {
   var posicionEliminar = document.getElementsByName("inpDestruirPosicion")[0]
