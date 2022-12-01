@@ -17,8 +17,6 @@ listaUl.addEventListener("mousedown", function (event) {
   }
 });
 
-console.log(listaUl[1]);
-
 //Quito evento click derecho
 document.addEventListener("contextmenu", (event) => event.preventDefault());
 
@@ -44,7 +42,7 @@ function seguirProgresion() {
   var liDespuesDeAñadir = listaUl.lastElementChild;
   liDespuesDeAñadir.addEventListener("mousedown", function (event) {
     if (event.button == 2) {
-        console.log(liDespuesDeAñadir);
+      console.log(liDespuesDeAñadir);
       eliminarElemento(liDespuesDeAñadir);
     }
   });
