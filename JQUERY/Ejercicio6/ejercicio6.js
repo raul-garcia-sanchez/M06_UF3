@@ -1,25 +1,28 @@
 $(document).ready(function () {
+  $("[name = 'creardorEnlace']").click(function () {
+    $.fn.createLink("http://nuevoenlace.com", "myClass");
+  });
 
-    $("[name = 'creardorEnlace']").click(function () {
-        $.fn.createLink("http://nuevoenlace.com", "myClass");
-    });
-
-    $("[name = 'clonadorEnlace'").click(function () {
-        $.fn.cloneLink();
-    });
+  $("[name = 'clonadorEnlace'").click(function () {
+    $.fn.cloneElement($("[class = 'myClass']"));
+  });
 });
 
 $.fn.createLink = function (href = "", classLInk = null) {
-    if (href != null && classLInk != null) {
-        $("p").first().append("<a href='" + href + "' class='" + classLInk + "'>Nuevo Enlace</a><br>");
-    }
-    else {
-        $("p").first().append("<a href='" + href + "'>Nuevo Enlace</a><br>");
-    }
-
+  if (href != null && classLInk != null) {
+    $("p")
+      .first()
+      .append(
+        "<a href='" + href + "' class='" + classLInk + "'>Nuevo Enlace</a><br>"
+      );
+  } else {
+    $("p")
+      .first()
+      .append("<a href='" + href + "'>Nuevo Enlace</a><br>");
+  }
 };
 
-$.fn.cloneLink = function () {
-    $("p").last().append($("[class = 'myClass']").first().clone());
-    $("p").last().append("<br>");
-}
+$.fn.cloneElement = function (element) {
+  $("p").last().append(element.first().clone());
+  $("p").last().append("<br>");
+};
